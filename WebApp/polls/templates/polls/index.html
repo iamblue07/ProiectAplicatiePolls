@@ -1,0 +1,36 @@
+{% load static %}
+<div style="background: url('{% static 'polls/images/background.png' %}') no-repeat center center fixed; background-size: cover; height: 98vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+    <!-- Headline -->
+    <h1 style="font-size: 72px; color: blue;  font-family: 'Lobster', cursive;">Chestionar</h1>
+
+    <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
+
+        <!-- Imaginea din stanga -->
+        <div style="flex: 1; padding: 20px;">
+            <img src="{% static 'polls/images/thinking.png' %}" style="max-width: 50%; height: auto;">
+        </div>
+
+        <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+        <center>
+            <div class="polls-container" style="flex: 2; max-width: 600px; padding: 20px; border: 5px solid #ccc; text-align: center; font-size: 18px;">
+                {% if latest_question_list %}
+                    <ul class="polls-list" style="list-style: none; padding: 0; margin: 0; text-align: center;">
+                        {% for question in latest_question_list %}
+                            <li style="margin-bottom: 10px;"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No polls are available.</p>
+                {% endif %}
+            </div>
+        </center>
+
+        <!-- Imaginea din dreapta -->
+        <div style="flex: 1; padding: 20px; display: flex; justify-content: center; align-items: center;">
+            <img src="{% static 'polls/images/woman.png' %}"  style="max-width: 50%; height: auto;">
+        </div>
+
+    </div>
+</div>
